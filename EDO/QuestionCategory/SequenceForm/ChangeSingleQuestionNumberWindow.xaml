@@ -1,0 +1,25 @@
+﻿<Window x:Class="EDO.QuestionCategory.SequenceForm.ChangeSingleQuestionNumberWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="{Loc Key=QuestionNumber}" Height="160" Width="300" WindowStartupLocation="CenterOwner">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="{Loc Key=BeforeChanges}" Style="{StaticResource TextRowStyle}"></TextBlock>
+        <TextBox Grid.Row="0" Grid.Column="1" Style="{StaticResource GridRowStyle}" Text="{Binding QuestionNumber.BeforeValue, Mode=OneWay}" IsReadOnly="True" IsEnabled="False"/>
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="{Loc Key=AfterChanges}" Style="{StaticResource TextRowStyle}"></TextBlock>
+        <TextBox Grid.Row="1" Grid.Column="1" Style="{StaticResource GridRowStyle}" Text="{Binding QuestionNumber.AfterValue}" IsReadOnly="False"/>
+        <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" >
+            <Button Width="80" Margin="4" Click="okButton_Clicked">OK</Button>
+            <Button Width="80" Margin="4" Click="cancelButton_Clicked" Content="{Loc Cancel}"></Button>
+        </StackPanel>
+    </Grid>
+</Window>

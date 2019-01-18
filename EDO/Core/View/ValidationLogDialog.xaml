@@ -1,0 +1,56 @@
+﻿<Window x:Name="MainWindow" x:Class="EDO.Core.View.ValidationLogDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EDO.Core.View"
+        mc:Ignorable="d"
+        Title="{Loc DDIValidationError}" Height="500" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="60" />
+        </Grid.RowDefinitions>
+        <Grid.Resources>
+            <Style TargetType="ListViewItem">
+                <Style.Triggers>
+                    <Trigger Property="ItemsControl.AlternationIndex"  Value="0">
+                        <Setter Property="Background" Value="White" />
+                    </Trigger>
+                    <Trigger Property="ItemsControl.AlternationIndex"  Value="1">
+                        <Setter Property="Background" Value="#FFE6E6E6" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Resources>
+        <ListView
+            x:Name="ValidationLogListView"
+            ItemsSource="{Binding}"
+            ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+            HorizontalContentAlignment="Stretch"
+            AlternationCount="2"
+            Grid.Row="0"
+            Grid.Column="0"
+            Margin="10, 5"
+            >
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="{Loc LineNumber}" DisplayMemberBinding="{Binding Line}" Width="auto" />
+                    <GridViewColumn Header="{Loc Position}" DisplayMemberBinding="{Binding Position}" Width="auto" />
+                    <GridViewColumn Header="{Loc InvalidElement}" DisplayMemberBinding="{Binding Name}" Width="auto" />
+                    <GridViewColumn Header="{Loc Detail}" Width="auto">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock  Text="{Binding Message}" TextWrapping="Wrap" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Grid Grid.Row="1" Grid.Column="0" Height="Auto">
+            <Button x:Name="CloseButton" Content="{Loc Close}" HorizontalAlignment="Right" VerticalAlignment="Center" Padding="10, 5" Margin="10" Click="CloseButton_Click" />
+        </Grid>
+        
+    </Grid>
+</Window>
